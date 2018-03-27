@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Check IBAN",
+    "x-lastModified": "Mar 13, 2018 10:14AM PST"
+  },
+  "paths": {
+    "/checkiban": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/CheckIBANResponse"
+            },
+            "examples": {
+              "application/json": {
+                "iban": {
+                  "BBAN": "ABNA0607040343",
+                  "CheckDigits": "48",
+                  "Code": "NL48ABNA0607040343",
+                  "CountryCode": "NL",
+                  "CountrySettings": {
+                    "Format": "U04F10",
+                    "Length": 18
+                  },
+                  "PrintCode": "NL48 ABNA 0607 0403 43"
+                },
+                "result": "OK"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "iban",
+            "in": "query",
+            "description": "The International Banking Account Number you wish to validate",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "operationId": "postCheckiban",
+        "tags": []
+      }
+    }
+  },
+  "definitions": {
+    "CheckIBANResponse": {
+      "type": "object",
+      "properties": {
+        "iban": {
+          "type": "object",
+          "properties": {
+            "BBAN": {
+              "type": "string"
+            },
+            "CheckDigits": {
+              "type": "string"
+            },
+            "Code": {
+              "type": "string"
+            },
+            "CountryCode": {
+              "type": "string"
+            },
+            "CountrySettings": {
+              "type": "object",
+              "properties": {
+                "Format": {
+                  "type": "string"
+                },
+                "Length": {
+                  "type": "integer"
+                }
+              }
+            },
+            "PrintCode": {
+              "type": "string"
+            }
+          }
+        },
+        "result": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
